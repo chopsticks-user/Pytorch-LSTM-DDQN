@@ -2,7 +2,7 @@ import numpy as np
 import gym
 import torch as T
 from torch.optim import lr_scheduler as ls
-import lin_qn, lstm_qn, conv_qn, environment, tools
+import lstm_qn, tools
 #from ultis import plot_learning_curve
 
 if __name__ == "__main__":
