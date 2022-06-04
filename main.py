@@ -2,14 +2,14 @@ import numpy as np
 import gym
 import torch as T
 from torch.optim import lr_scheduler as ls
-import lstm_qn, tools
+import lin_qn, lstm_qn, conv_qn, environment, tools
 #from ultis import plot_learning_curve
 
 if __name__ == "__main__":
 
-    env = gym.make("ALE/Breakout-v5", render_mode = "human")
+    env = gym.make("ALE/Asterix-v5", render_mode = "human")
     
-    bot = lstm_qn.DuelQNet(in_features = [210, 160, 3], out_features = 4, hidden_lstm_size = 64, n_hidden_lstm_layers = 10, 
+    bot = lstm_qn.DuelQNet(in_features = [210, 160, 3], out_features = 9, hidden_lstm_size = 64, n_hidden_lstm_layers = 5, 
                             hidden_lin_size = 3096)
     bot.lr_decay_method(ls.ExponentialLR(bot.critic_net.optimizer, 0.999))
     env.reset()
