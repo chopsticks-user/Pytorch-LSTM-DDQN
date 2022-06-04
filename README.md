@@ -1,5 +1,7 @@
 # Pytorch-LSTM-DDQN
 Train Duel Deep Q Net using Pytorch on Gym Open AI environment.  
+The model is generallized so that it can be used for any discrete-action-space environment 
+on Gym Open AI by modifying in_features and out_features accordingly.
   
 References: 
   
