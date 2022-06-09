@@ -1,11 +1,13 @@
 import random as R
 from collections import namedtuple, deque
-from tools import transition_values
 import torch as T
+import torch.nn as nn
 import numpy as np
 
+transition_values = namedtuple("transition_values", ("current_state", "action", "next_state", "reward", "terminal_state"))
+
 #seperate replay batches
-class Memory(object):
+class Memory():
     def __init__(self, capacity = 10000, replay_size = 5):
         self.capacity = capacity
         self.replay_size = replay_size

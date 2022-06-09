@@ -11,12 +11,13 @@ from collections import namedtuple, deque
 
 from structure import DuelLSTM
 from memory import Memory
-from tools import transition_values
+
+transition_values = namedtuple("transition_values", ("current_state", "action", "next_state", "reward", "terminal_state"))
 
 class DuelQNet(nn.Module):
     def __init__(self, in_features = 1, out_features = 1, hidden_lstm_size = 1, n_hidden_lstm_layers = 1, 
                 hidden_lin_size = 32, gamma = 0.9, alpha = 0.01, epsilon = 1.0, epsilon_min = 0.01, 
-                epsilon_decay = 5000, memory_capacity = 10000, batch_size = 128, replay_size = 3, 
+                epsilon_decay = 5000, memory_capacity = 50000, batch_size = 128, replay_size = 3, 
                 bidirectional = False, dropout = 0.0, environment = None, file_path = None):
         super().__init__()
         self.device = T.device("cuda")
@@ -204,7 +205,10 @@ class DuelQNet(nn.Module):
         loss.backward()
         self.critic_net.optimizer.step()
         self.loss = loss
-        self.total_loss += loss
+
+        # a leaf Variable that requires grad is being used in an in-place operation. -> done by
+        # using not-in-place operation
+        self.total_loss = self.total_loss + loss
         self.average_loss = self.total_loss / (self.current_step - self.batch_size * 3)
         self.alpha = self.critic_net.optimizer.param_groups[0]["lr"]
         #self.lr_scheduler.step(loss)
