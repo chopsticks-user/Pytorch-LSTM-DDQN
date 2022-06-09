@@ -11,9 +11,9 @@ if __name__ == "__main__":
 
     if new_traning:
         agent = tools.new_agent(in_features = [250, 160, 3], out_features = 6, hidden_lstm_size = 16, n_hidden_lstm_layers = 1, 
-                                hidden_lin_size = 16, replay_size = 3, bidirectional = True, file_path = "Gym/Load/Model/AirRaid")
+                                hidden_lin_size = 16, replay_size = 3, bidirectional = True, file_path = "Load/AirRaid")
 
         tools.training_phase(agent, gym.make("ALE/AirRaid-v5", render_mode = "human"))
     else:
-        agent = tools.train_load("Gym/Load/Model/AirRaid")
+        agent = tools.train_load("Load/AirRaid")
         tools.training_phase(agent, gym.make("ALE/AirRaid-v5", render_mode = "human"))
