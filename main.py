@@ -7,7 +7,7 @@ import lin_qn, lstm_qn, conv_qn, environment, tools
 
 if __name__ == "__main__":
     # set to false after the first training section to continue training
-    new_traning = False
+    new_traning = True
 
     if new_traning:
         agent = tools.new_agent(in_features = [250, 160, 3], out_features = 6, hidden_lstm_size = 16, n_hidden_lstm_layers = 1, 
