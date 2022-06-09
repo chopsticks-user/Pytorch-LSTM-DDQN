@@ -5,7 +5,6 @@ on Gym Open AI by modifying in_features and out_features (number of actions) acc
 Models can be saved for later traning sections.
   
 References:  
-
 [1] Ralf C. Staudemeyer, and Eric Rothstein Morris. – Understanding LSTM –
 a tutorial into Long Short-Term Memory Recurrent Neural Networks. In arXiv, September 2019.    
 [2] Ziyu Wang, Tom Schaul, Matteo Hessel, Hado van Hasselt, Marc Lanctot, and Nando de Freitas.
